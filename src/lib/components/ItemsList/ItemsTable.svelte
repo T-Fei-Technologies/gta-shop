@@ -19,14 +19,10 @@
 	const onRemove = (id: string) => {
 		$AppStore.Items = $AppStore.Items.filter(item => item.id !== id);
 	}
-
-	onMount(() => {
-		inputRef.focus();
-	})
 </script>
 
 <div class="card">
-	<header class="card-header h3 font-bold">Items</header>
+	<header class="card-header h3 font-bold">Work Orders</header>
 	<section class="p-4">
 		<ItemAdd item={newItem} {onAdd} {inputRef} />
 		{#if $AppStore.Items.length === 0}

@@ -8,20 +8,21 @@
 	$: total = subtotal * (1 + ($AppStore.percentage) / 100);
 </script>
 
-<div class="card flex flex-col">
+<div class="card">
 	<header class="card-header h3 font-bold">Total</header>
-	<section class="flex flex-col items-end justify-between gap-2 p-4 flex-1">
+	<section class="flex flex-col items-end justify-between gap-2 p-4">
 		<div class="flex justify-between w-full">
 			<span>Sub Total</span>
 			<span>{currencyFormatter.format(subtotal)}</span>
 		</div>
-		<div class="flex flex-col md:flex-row gap-4 w-full">
+
+		<div class="grid grid-cols-[1fr_auto] w-full gap-4">
 			<p>Percentage</p>
-			<div class="input-group input-group-divider grid-cols-[1fr_auto]">
-				<input type="text" class="text-right" bind:value={percentage} />
-				<span class="input-group-shim px-2">%</span>
+			<div class="flex">
+				<input type="text" class="input text-right pr-2 mr-1" bind:value={percentage} />%
 			</div>
 		</div>
+
 		<div class="flex justify-between w-full">
 			<span>Total</span>
 			<span>{currencyFormatter.format(total)}</span>
