@@ -4,23 +4,31 @@
 	import { AppStore, type Item as ItemType } from '$lib/stores/AppStore';
 	import ItemAdd from '$lib/components/ItemsList/ItemAdd.svelte';
 	import { createNewItem } from '$lib/createNewItem';
+	import { onMount } from 'svelte';
 
 	let newItem = createNewItem();
+	let inputRef: HTMLElement;
 
 	const onAdd = (item: ItemType) => {
+
 		$AppStore.Items = [...$AppStore.Items, item];
 		newItem = createNewItem();
+		inputRef.focus();
 	}
 
 	const onRemove = (id: string) => {
 		$AppStore.Items = $AppStore.Items.filter(item => item.id !== id);
 	}
+
+	onMount(() => {
+		inputRef.focus();
+	})
 </script>
 
 <div class="card">
 	<header class="card-header h3 font-bold">Items</header>
 	<section class="p-4">
-		<ItemAdd item={newItem} {onAdd} />
+		<ItemAdd item={newItem} {onAdd} {inputRef} />
 		{#if $AppStore.Items.length === 0}
 			<p class="text-center mt-4">No Items</p>
 		{/if}
